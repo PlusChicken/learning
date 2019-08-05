@@ -72,7 +72,7 @@ git diff HEAD^ [file name]
 
 git remote -v ------查询所有别名
 
-git remove add origin [网上仓库地址]
+git remote add origin [网上仓库地址]
 
 git push origin master 传输分支
 
@@ -252,4 +252,44 @@ git merge[远程库地址别名/远程分支名]  ----之后再合并
 
 #### 跨团队协助操作模式
 
-外人 先fork clone 到本地库 push回远程库 pullrequest 去 大佬远程库 然后大佬允许之后merge
+外人 先fork clone 到本地库 push回远程库 pullrequest[分为new pull request 和 Create pull request ] 去 大佬远程库 然后大佬允许之后merge
+
+#### 使用SSH登陆[以前是使用Http登陆的]
+
+ssh-keygen -t rsa -C [邮件名]
+
+cat id_rsa.pub  (复制里面的码去公共库的SSH and GPG keys [new sshkey])
+
+新建远程地址的别名 输入ssh的地址
+
+#### Eclipse中忽略文件
+
+##### 概念：Eclipse特定文件
+
+​	这些都是Eclipse为了管理我们创建的工程而维护的文件，和开发的代码没有直接关系。最好不要在Git中进行追踪，也就是把它们忽略。
+
+​	.classpath 文件
+
+​	.project 文件
+
+​	.setting 目录下所有文件
+
+##### 为什么要忽略Eclipse 特定文件呢？
+
+​	同一个团队中很难保证大家使用相同的IDE工具，而IDE工具不同时，相关工程特定文件就有可能不同，如果这些文件加入版本控制，那么开发时很有可能需要为了这些文件解决冲突。
+
+##### 配置Java.gitignore
+
+可以在github中先找到初始配置
+
+在加入.classpath  .project  .settings  target
+
+之后在.gitconfig 中加入
+
+[core]
+
+​		excludesfile = C:/[自己的路径]/Java.gitignore
+
+[注意：一定要使用/不能使用\\]
+
+ 
